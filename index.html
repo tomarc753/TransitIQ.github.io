@@ -1,17 +1,94 @@
-<!DOCTYPE html>>
+<!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <title>TransitIQ</title> <!-- Title of map -->
-        <meta name="viewport" content='initial-scale=1,maximum-scale=1,user-scalable=no'/>
-        <link rel="stylesheet" href="dist\leaflet.css"/>
-   
-        <script src="dist\leaflet.js"></script>
- 
-    </head>
-    <body>
-        <h1>TransitIQ Map</h1>
-        <div id = "map" style = "width:900px; height:580px;"></div> <!--set the size of your map -->
-        <script type="text/javascript" src="dist\mymap.js"></script>
-    </body>
+<head>
+    <meta charset="utf-8">
+    <title>Bus Simulation Map</title>
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
+    <link rel="stylesheet" href="dist/leaflet.css" />
+    <style>
+        body {
+            background-color: skyblue;
+            margin: 20px;
+            font-family: Arial, sans-serif;
+        }
+
+        h1, h2 {
+            text-align: center;
+        }
+
+        .map-panel {
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+
+        #map {
+            width: 900px;
+            height: 580px;
+            border: 1px solid #999;
+        }
+
+        #busstats {
+            width: 220px;
+            height: 580px;
+            resize: vertical;
+        }
+
+        .controls {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+
+        button, select {
+            width: 215px;
+            height: 50px;
+        }
+
+        #logs {
+            display: block;
+            width: 220px;
+            height: 380px;
+            margin: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Bus Simulation for Reroute Algorithms</h1>
+
+    <div class="map-panel">
+        <div id="map"></div>
+        <textarea id="busstats" placeholder="Bus Statistics"></textarea>
+    </div>
+
+    <h2>Simulation Controls</h2>
+
+    <div class="controls">
+        <button id="startButton">Start/Pause</button>
+        <button id="resetButton">Reset</button>
+
+        <select id="algorithmDropdown">
+            <option value="algorithm1">Split Response</option>
+            <option value="algorithm2">Capacity Constrained</option>
+            <option value="algorithm3">Even Cost</option>
+        </select>
+
+        <select id="simulationspeed">
+            <option value="1">0.25x</option>
+            <option value="2">0.5x</option>
+            <option value="3">1x</option>
+            <option value="4">2x</option>
+            <option value="5">5x</option>
+        </select>
+        <textarea id="logs" placeholder="Simulation Logs"></textarea>
+    </div>
+
+    <button id="incident" style="display: block; background-color: red; color: white; margin: 20px auto;">Trigger Incident</button>
+    <script src="dist/leaflet.js"></script>
+    <script src="dist/mymap.js"></script>
+    <script src="dist/simulation.js"></script>
+</body>
 </html>
